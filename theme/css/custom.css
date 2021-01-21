@@ -1,0 +1,106 @@
+/* CSS */
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
+
+/* Specify in CSS */
+code {
+  font-family: "Fira Code", monospace;
+}
+
+@supports (font-variation-settings: normal) {
+  code {
+    font-family: "Fira Code VF", monospace;
+    font-weight: 300;
+  }
+}
+
+body {
+  font-family: "Fira Code", monospace;
+  /* background-color: #283242; */
+}
+
+.content main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 300
+}
+
+
+/*.sidebar-scrollbox::-webkit-scrollbar-track*/
+/*{*/
+/*  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+/*  border-radius: 10px;*/
+/*  background-color: #F5F5F5;*/
+/*}*/
+
+/*.sidebar-scrollbox::-webkit-scrollbar*/
+/*{*/
+/*  width: 12px;*/
+/*  background-color: #F5F5F5;*/
+/*}*/
+
+/*.sidebar-scrollbox::-webkit-scrollbar-thumb*/
+/*{*/
+/*  border-radius: 10px;*/
+/*  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+/*  background-color: #555;*/
+/*}*/
+
+.sidebar-scrollbox:-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.sidebar-scrollbox::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+.sidebar-scrollbox::-webkit-scrollbar-thumb
+{
+  background-color: #3eaf7c;
+}
+
+
+body::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+  background-color: #3eaf7c;
+}
+
+
+code::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+code::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+code::-webkit-scrollbar-thumb
+{
+  background-color: #3eaf7c;
+}

@@ -1,0 +1,976 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>(0001) -&gt; TwoSum - OJ</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="OJ Solution">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../theme/css/custom.css">
+        
+
+        
+    </head>
+    <body class="Ayu">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "Ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="../index.html"><strong aria-hidden="true">1.</strong> OJ Solution</a></li><li><a href="../leetcode/index.html"><strong aria-hidden="true">2.</strong> Leetcode</a></li><li><ol class="section"><li><a href="../leetcode/TwoSum.html" class="active"><strong aria-hidden="true">2.1.</strong> (0001) -&gt; TwoSum</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">OJ</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#0001----two-sum-" id="0001----two-sum-">(0001) -&gt; { Two Sum }</a></h1>
+<hr />
+<h2><a class="header" href="#description" id="description">Description</a></h2>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have <strong><em>exactly</em></strong> one solution, and you may not use the <em>same</em> element twice.</p>
+<p><strong>Example:</strong></p>
+<p>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[<strong>0</strong>] + nums[<strong>1</strong>] = 2 + 7 = 9,
+return [<strong>0</strong>, <strong>1</strong>].</p>
+<h2><a class="header" href="#rust-solution" id="rust-solution">Rust Solution</a></h2>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+use std::convert::TryFrom;
+use std::{collections::HashMap, vec};
+
+pub fn two_sum(nums: Vec&lt;i32&gt;, target: i32) -&gt; Vec&lt;i32&gt; {
+    let mut element_index_cache: HashMap&lt;i32, i32&gt; = HashMap::new();
+
+    for (i, e) in nums.into_iter().enumerate() {
+        let key = target - e;
+        match element_index_cache.get(&amp;key) {
+            Some(v) =&gt; {
+                return vec![*v, i as i32];
+            }
+            None =&gt; {
+                element_index_cache.insert(e, i as i32);
+            }
+        }
+    }
+
+    panic!(&quot;impossible&quot;)
+}
+
+pub fn two_sum_brute_force(nums: Vec&lt;i32&gt;, target: i32) -&gt; Vec&lt;i32&gt; {
+    for (i, e1) in nums.iter().enumerate() {
+        for (j, e2) in nums.iter().enumerate() {
+            if i != j &amp;&amp; *e1 + *e2 == target {
+                return vec![i as i32, j as i32];
+            }
+        }
+    }
+
+    panic!(&quot;impossible&quot;)
+}
+
+
+pub fn two_sum_rec(nums: Vec&lt;i32&gt;, target: i32) -&gt; Vec&lt;i32&gt; {
+    fn func&lt;'a&gt;(
+        nums: &amp;Vec&lt;i32&gt;,
+        target: i32,
+        element_index_cache: &amp;'a mut HashMap&lt;i32, i32&gt;,
+        len: usize,
+    ) -&gt; (&amp;'a HashMap&lt;i32, i32&gt;, Option&lt;Vec&lt;i32&gt;&gt;) {
+        match len {
+            0 =&gt; (element_index_cache, None),
+            _ =&gt; {
+                let curr_index = len - 1;
+                let curr_index_i32 = i32::try_from(curr_index).unwrap();
+                let curr_value = nums[curr_index];
+                let another = target - curr_value;
+
+                match element_index_cache.get(&amp;another) {
+                    Some(v) =&gt; (element_index_cache, Some(vec![curr_index_i32, *v])),
+                    None =&gt; {
+                        element_index_cache.insert(curr_value, curr_index_i32);
+                        func(nums, target, element_index_cache, len - 1)
+                    }
+                }
+            }
+        }
+    }
+
+    match func(&amp;nums, target, &amp;mut HashMap::new(), nums.len()) {
+        (_, Some(rst)) =&gt; rst,
+        _ =&gt; panic!(&quot;impossible&quot;),
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn basic() {
+        assert_eq!(two_sum(vec![2, 7, 15, 13], 9), vec![0, 1]);
+        assert_eq!(two_sum(vec![3, 2, 4], 6), vec![1, 2]);
+        assert_eq!(two_sum(vec![3, 3], 6), vec![0, 1]);
+
+        assert_eq!(two_sum_rec(vec![2, 7, 15, 13], 9), vec![0, 1]);
+        assert_eq!(two_sum_rec(vec![3, 2, 4], 6), vec![1, 2]);
+        assert_eq!(two_sum_rec(vec![3, 3], 6), vec![0, 1]);
+
+        assert_eq!(two_sum_brute_force(vec![2, 7, 15, 13], 9), vec![0, 1]);
+        assert_eq!(two_sum_brute_force(vec![3, 2, 4], 6), vec![1, 2]);
+        assert_eq!(two_sum_brute_force(vec![3, 3], 6), vec![0, 1]);
+
+    }
+}
+
+#}</code></pre></pre>
+<h2><a class="header" href="#kotlin-solution" id="kotlin-solution">Kotlin Solution</a></h2>
+<pre><code class="language-kotlin">package kleetcode.k0001
+/*
+在想这道题之前，先做一道更简单的。
+Given an array of integers, return indice of the number equal to a specfic target.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 7
+Because nums[1] = 7 == target, return 1
+
+为了验证条件是否满足，程序需要访问每一个长度为 1 的单元的信息来判断。
+程序每次的视域只能为常数个单元，不妨设置常数为 1
+访问 长度 为 N 的 Array 需要视域 为 1 的 程序访问 N 次
+每一次访问可以 通过验证 num == T 来获得唯一的确认。
+可以推断 遍历一遍 num 即可获得所需结果。
+时间复杂度为O(N)
+
+现在的验证方式发生了改变。验证本身依然需要不可避免的时间复杂度 O(N)
+需要验证 num + ? == T 来获得唯一的确认
+也即 ？== T - num, 其中 ? 在 nums 范围内。
+问题退化为我们在上面解决过的问题。
+最佳时间复杂度为 O(N)
+
+如果，使用 O(N) 的时间 构建缓存服务
+O(N)[build cache] + O(N) (filter) * O(1) (predicate) 
+|&gt; O(N)
+
+但是每次执行函数，我们总是需要预先使用 O(N) 的时间 O(N) 的空间 来构建
+&lt;curr value，curr index&gt; 的 cache
+
+如果我们可以在执行 filter 的同时构建缓存的话，就可以减少平均情况下的时间和空间消耗
+当前 索引 每次将 array 分成 两部分。
+我们最多在执行 filter 的时候 将当前索引之前的所有元素建立缓存。
+可以容易的想到 只要在 最后一个元素之前构建完之前所有元素的索引即可找到最后一个是否符合条件
+cache = {2, 7, 5} | verify 13
+如果 13 在之前的缓存中找不到 满足条件的，
+可以安全的缩小当前 array 为 [2, 7, 5]
+
+*/
+fun twoSum(nums: IntArray, target: Int): IntArray {
+    val map = hashMapOf&lt;Int, Int&gt;()
+
+    for (i in 0 until nums.size) {
+
+        if (map.containsKey(target - nums[i])) {
+            val tmp = map[target - nums[i]]!!.toInt()
+            return intArrayOf(tmp, i)
+        }
+
+        map[nums[i]] = i
+    }
+    return intArrayOf()
+}
+
+// try.kotlinlang.org
+fun main() {
+    println(twoSum(intArrayOf(2, 7, 15, 13), 9).joinToString { e -&gt; e.toString() })
+}
+
+</code></pre>
+<h2><a class="header" href="#kotlin-test" id="kotlin-test">Kotlin Test</a></h2>
+<pre><code class="language-kotlin">package kleetcode.k0001
+/*
+在想这道题之前，先做一道更简单的。
+Given an array of integers, return indice of the number equal to a specfic target.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 7
+Because nums[1] = 7 == target, return 1
+
+为了验证条件是否满足，程序需要访问每一个长度为 1 的单元的信息来判断。
+程序每次的视域只能为常数个单元，不妨设置常数为 1
+访问 长度 为 N 的 Array 需要视域 为 1 的 程序访问 N 次
+每一次访问可以 通过验证 num == T 来获得唯一的确认。
+可以推断 遍历一遍 num 即可获得所需结果。
+时间复杂度为O(N)
+
+现在的验证方式发生了改变。验证本身依然需要不可避免的时间复杂度 O(N)
+需要验证 num + ? == T 来获得唯一的确认
+也即 ？== T - num, 其中 ? 在 nums 范围内。
+问题退化为我们在上面解决过的问题。
+最佳时间复杂度为 O(N)
+
+如果，使用 O(N) 的时间 构建缓存服务
+O(N)[build cache] + O(N) (filter) * O(1) (predicate) 
+|&gt; O(N)
+
+但是每次执行函数，我们总是需要预先使用 O(N) 的时间 O(N) 的空间 来构建
+&lt;curr value，curr index&gt; 的 cache
+
+如果我们可以在执行 filter 的同时构建缓存的话，就可以减少平均情况下的时间和空间消耗
+当前 索引 每次将 array 分成 两部分。
+我们最多在执行 filter 的时候 将当前索引之前的所有元素建立缓存。
+可以容易的想到 只要在 最后一个元素之前构建完之前所有元素的索引即可找到最后一个是否符合条件
+cache = {2, 7, 5} | verify 13
+如果 13 在之前的缓存中找不到 满足条件的，
+可以安全的缩小当前 array 为 [2, 7, 5]
+
+*/
+fun twoSum(nums: IntArray, target: Int): IntArray {
+    val map = hashMapOf&lt;Int, Int&gt;()
+
+    for (i in 0 until nums.size) {
+
+        if (map.containsKey(target - nums[i])) {
+            val tmp = map[target - nums[i]]!!.toInt()
+            return intArrayOf(tmp, i)
+        }
+
+        map[nums[i]] = i
+    }
+    return intArrayOf()
+}
+
+// try.kotlinlang.org
+fun main() {
+    println(twoSum(intArrayOf(2, 7, 15, 13), 9).joinToString { e -&gt; e.toString() })
+}
+
+</code></pre>
+<h2><a class="header" href="#golang-solution" id="golang-solution">Golang Solution</a></h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+)
+
+/*TwoSum defination
+ */
+func TwoSum(nums []int, target int) []int {
+	elementIndexCache := map[int]int{}
+	
+	for i, e := range nums {
+		key := target - e
+		
+		if v, ok := elementIndexCache[key]; ok {
+			return []int{v, i}
+		}
+
+		elementIndexCache[e] = i
+	}
+
+	panic(&quot;impossible&quot;)
+}
+
+func main() {
+	fmt.Printf(&quot;%v\n&quot;, TwoSum([]int{2, 7, 11, 15}, 9))
+}
+
+</code></pre>
+<h2><a class="header" href="#golang-test" id="golang-test">Golang Test</a></h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;testing&quot;
+
+	&quot;github.com/stretchr/testify/assert&quot;
+)
+
+func TestTwoSum(t *testing.T) {
+	assert.Equal(t, []int{0, 1}, TwoSum([]int{2, 7, 11, 15}, 9))
+	assert.Equal(t, []int{1, 2}, TwoSum([]int{3, 2, 4}, 6))
+	assert.Equal(t, []int{0, 1}, TwoSum([]int{3, 3}, 6))
+}
+
+</code></pre>
+<h2><a class="header" href="#python-solution" id="python-solution">Python Solution</a></h2>
+<pre><code class="language-python">import unittest
+from typing import List
+from collections import deque
+
+
+def CanFinish(coursesCount: int, preRequisites: List[List[int]]) -&gt; bool:
+    adjOut = [set() for _ in range(coursesCount)]
+    for [a, b] in preRequisites:
+        adjOut[b].add(a)
+
+    adjIn = [set() for _ in range(coursesCount)]
+    for [a, b] in preRequisites:
+        adjIn[a].add(b)
+
+    S = deque()
+
+    for i in range(coursesCount):
+        if len(adjIn[i]) == 0:
+            S.append(i)
+
+    while len(S) != 0:
+        n = S.pop()
+        for m in adjOut[n]:
+            adjIn[m].remove(n)
+            if len(adjIn[m]) == 0:
+                S.append(m)
+
+    edgesCount = 0
+
+    for e in adjIn:
+        edgesCount += len(e)
+
+    return edgesCount == 0
+
+
+if __name__ == &quot;__main__&quot;:
+    print(CanFinish(0, [[]]))
+
+
+class TestCanFinish(unittest.TestCase):
+    def test(self):
+        self.assertTrue(CanFinish(2, [[1, 0]]))
+        self.assertTrue(CanFinish(4, [[1, 0], [2, 0], [3, 1], [3, 2]]))
+        self.assertFalse(CanFinish(2, [[1, 0], [0, 1]]))
+
+</code></pre>
+<h2><a class="header" href="#python-test" id="python-test">Python Test</a></h2>
+<pre><code class="language-python">{{#include ../../../py/leetcode/0207/main_test.py}}
+</code></pre>
+<h2><a class="header" href="#typescript-solution" id="typescript-solution">TypeScript Solution</a></h2>
+<pre><code class="language-typescript">import * as C from &quot;../../deps/coll.ts&quot;;
+import * as F from &quot;../../deps/func.ts&quot;;
+
+/*
+WordBreak:
+  WordBreak(x, []) -&gt; (x 不为 &quot;&quot; 时) -&gt; false
+  WordBreak(&quot;&quot;, x) -&gt; x 为任何值时 -&gt; true
+
+  固定 dict 具有 更少 与 易于推导 的边界条件
+
+  当 固定 str 时, 当 dict {a} 满足 要求时
+    {a,b} 一定满足要求
+  但是 使用 dict {a} 不太方便构造 已经计算好的缓存 | 拆分子问题
+  
+  当 固定 dict 时, 当 &quot;a&quot; 满足要求时
+    &quot;ab&quot; 只需要判断是否可以用 dict 构造出 &quot;b&quot; 串
+  
+  WB(xss, s{}) = for all { WB(x, s{}) &amp;&amp; WB(xs, s{}) }
+
+  DP[n] -&gt; 在 index 为 n 处 是否 用 dict 可以断开
+  DP[0] -&gt; 在 index 为 0 处 任何 str 都可以 断成 [&quot;&quot;, str]
+  DP == (length = 9)[
+    0 -&gt; t, [&quot;&quot;, ?]
+    1 -&gt; f,
+    2 -&gt; f,
+    3 -&gt; f,
+    4 -&gt; t, [&quot;leet&quot;, ?]
+    5 -&gt; f,
+    6 -&gt; f,
+    7 -&gt; f,
+    8 -&gt; t, [&quot;leet&quot;, &quot;code&quot;, ?]
+  ]
+  WordBreak(&quot;leetcode&quot;, U.SetOf(&quot;leet&quot;, &quot;code&quot;));
+*/
+export const WordBreak = (str: string, dict: Set&lt;string&gt;): boolean =&gt; {
+  const dp: Array&lt;boolean&gt; = Array(str.length + 1).fill(false);
+  dp[0] = true;
+
+  for (let i = 1; i &lt; str.length + 1; i++) {
+    for (let j = 0; j &lt; i; j++) {
+      const substr = str.substring(j, i);
+
+      if (dp[j] &amp;&amp; dict.has(substr)) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+  return dp[str.length];
+};
+
+const WordBreak2: (str: string, dict: Set&lt;string&gt;) =&gt; boolean = F.Memoize(
+  (str: string, dict: Set&lt;string&gt;): boolean =&gt; {
+    if (dict.has(str)) {
+      return true;
+    }
+
+    for (let i = 0; i &lt; str.length; i++) {
+      const x = str.substring(0, i);
+      const xs = str.substring(i, str.length);
+      if (WordBreak2(x, dict) &amp;&amp; WordBreak2(xs, dict)) {
+        return true;
+      }
+    }
+    return false;
+  },
+  (args) =&gt; (JSON.stringify([args[0], ...args[1]])),
+);
+
+console.log(WordBreak2(&quot;a&quot;, C.SetOf(&quot;a&quot;)));
+
+// console.log(WordBreak(&quot;leetcode&quot;, C.SetOf(&quot;leet&quot;, &quot;code&quot;)));
+// console.log(WordBreak(&quot;applepenapple&quot;, C.SetOf(&quot;apple&quot;, &quot;pen&quot;)));
+// console.log(WordBreak(&quot;catsandog&quot;, C.SetOf(&quot;cats&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;)));
+
+
+console.log(WordBreak2(
+  &quot;fohhemkkaecojceoaejkkoedkofhmohkcjmkggcmnami&quot;,
+  new Set([
+    &quot;kfomka&quot;,
+    &quot;hecagbngambii&quot;,
+    &quot;anobmnikj&quot;,
+    &quot;c&quot;,
+    &quot;nnkmfelneemfgcl&quot;,
+    &quot;ah&quot;,
+    &quot;bgomgohl&quot;,
+    &quot;lcbjbg&quot;,
+    &quot;ebjfoiddndih&quot;,
+    &quot;hjknoamjbfhckb&quot;,
+    &quot;eioldlijmmla&quot;,
+    &quot;nbekmcnakif&quot;,
+    &quot;fgahmihodolmhbi&quot;,
+    &quot;gnjfe&quot;,
+    &quot;hk&quot;,
+    &quot;b&quot;,
+    &quot;jbfgm&quot;,
+    &quot;ecojceoaejkkoed&quot;,
+    &quot;cemodhmbcmgl&quot;,
+    &quot;j&quot;,
+    &quot;gdcnjj&quot;,
+    &quot;kolaijoicbc&quot;,
+    &quot;liibjjcini&quot;,
+    &quot;lmbenj&quot;,
+    &quot;eklingemgdjncaa&quot;,
+    &quot;m&quot;,
+    &quot;hkh&quot;,
+    &quot;fblb&quot;,
+    &quot;fk&quot;,
+    &quot;nnfkfanaga&quot;,
+    &quot;eldjml&quot;,
+    &quot;iejn&quot;,
+    &quot;gbmjfdooeeko&quot;,
+    &quot;jafogijka&quot;,
+    &quot;ngnfggojmhclkjd&quot;,
+    &quot;bfagnfclg&quot;,
+    &quot;imkeobcdidiifbm&quot;,
+    &quot;ogeo&quot;,
+    &quot;gicjog&quot;,
+    &quot;cjnibenelm&quot;,
+    &quot;ogoloc&quot;,
+    &quot;edciifkaff&quot;,
+    &quot;kbeeg&quot;,
+    &quot;nebn&quot;,
+    &quot;jdd&quot;,
+    &quot;aeojhclmdn&quot;,
+    &quot;dilbhl&quot;,
+    &quot;dkk&quot;,
+    &quot;bgmck&quot;,
+    &quot;ohgkefkadonafg&quot;,
+    &quot;labem&quot;,
+    &quot;fheoglj&quot;,
+    &quot;gkcanacfjfhogjc&quot;,
+    &quot;eglkcddd&quot;,
+    &quot;lelelihakeh&quot;,
+    &quot;hhjijfiodfi&quot;,
+    &quot;enehbibnhfjd&quot;,
+    &quot;gkm&quot;,
+    &quot;ggj&quot;,
+    &quot;ag&quot;,
+    &quot;hhhjogk&quot;,
+    &quot;lllicdhihn&quot;,
+    &quot;goakjjnk&quot;,
+    &quot;lhbn&quot;,
+    &quot;fhheedadamlnedh&quot;,
+    &quot;bin&quot;,
+    &quot;cl&quot;,
+    &quot;ggjljjjf&quot;,
+    &quot;fdcdaobhlhgj&quot;,
+    &quot;nijlf&quot;,
+    &quot;i&quot;,
+    &quot;gaemagobjfc&quot;,
+    &quot;dg&quot;,
+    &quot;g&quot;,
+    &quot;jhlelodgeekj&quot;,
+    &quot;hcimohlni&quot;,
+    &quot;fdoiohikhacgb&quot;,
+    &quot;k&quot;,
+    &quot;doiaigclm&quot;,
+    &quot;bdfaoncbhfkdbjd&quot;,
+    &quot;f&quot;,
+    &quot;jaikbciac&quot;,
+    &quot;cjgadmfoodmba&quot;,
+    &quot;molokllh&quot;,
+    &quot;gfkngeebnggo&quot;,
+    &quot;lahd&quot;,
+    &quot;n&quot;,
+    &quot;ehfngoc&quot;,
+    &quot;lejfcee&quot;,
+    &quot;kofhmoh&quot;,
+    &quot;cgda&quot;,
+    &quot;de&quot;,
+    &quot;kljnicikjeh&quot;,
+    &quot;edomdbibhif&quot;,
+    &quot;jehdkgmmofihdi&quot;,
+    &quot;hifcjkloebel&quot;,
+    &quot;gcghgbemjege&quot;,
+    &quot;kobhhefbbb&quot;,
+    &quot;aaikgaolhllhlm&quot;,
+    &quot;akg&quot;,
+    &quot;kmmikgkhnn&quot;,
+    &quot;dnamfhaf&quot;,
+    &quot;mjhj&quot;,
+    &quot;ifadcgmgjaa&quot;,
+    &quot;acnjehgkflgkd&quot;,
+    &quot;bjj&quot;,
+    &quot;maihjn&quot;,
+    &quot;ojakklhl&quot;,
+    &quot;ign&quot;,
+    &quot;jhd&quot;,
+    &quot;kndkhbebgh&quot;,
+    &quot;amljjfeahcdlfdg&quot;,
+    &quot;fnboolobch&quot;,
+    &quot;gcclgcoaojc&quot;,
+    &quot;kfokbbkllmcd&quot;,
+    &quot;fec&quot;,
+    &quot;dljma&quot;,
+    &quot;noa&quot;,
+    &quot;cfjie&quot;,
+    &quot;fohhemkka&quot;,
+    &quot;bfaldajf&quot;,
+    &quot;nbk&quot;,
+    &quot;kmbnjoalnhki&quot;,
+    &quot;ccieabbnlhbjmj&quot;,
+    &quot;nmacelialookal&quot;,
+    &quot;hdlefnbmgklo&quot;,
+    &quot;bfbblofk&quot;,
+    &quot;doohocnadd&quot;,
+    &quot;klmed&quot;,
+    &quot;e&quot;,
+    &quot;hkkcmbljlojkghm&quot;,
+    &quot;jjiadlgf&quot;,
+    &quot;ogadjhambjikce&quot;,
+    &quot;bglghjndlk&quot;,
+    &quot;gackokkbhj&quot;,
+    &quot;oofohdogb&quot;,
+    &quot;leiolllnjj&quot;,
+    &quot;edekdnibja&quot;,
+    &quot;gjhglilocif&quot;,
+    &quot;ccfnfjalchc&quot;,
+    &quot;gl&quot;,
+    &quot;ihee&quot;,
+    &quot;cfgccdmecem&quot;,
+    &quot;mdmcdgjelhgk&quot;,
+    &quot;laboglchdhbk&quot;,
+    &quot;ajmiim&quot;,
+    &quot;cebhalkngloae&quot;,
+    &quot;hgohednmkahdi&quot;,
+    &quot;ddiecjnkmgbbei&quot;,
+    &quot;ajaengmcdlbk&quot;,
+    &quot;kgg&quot;,
+    &quot;ndchkjdn&quot;,
+    &quot;heklaamafiomea&quot;,
+    &quot;ehg&quot;,
+    &quot;imelcifnhkae&quot;,
+    &quot;hcgadilb&quot;,
+    &quot;elndjcodnhcc&quot;,
+    &quot;nkjd&quot;,
+    &quot;gjnfkogkjeobo&quot;,
+    &quot;eolega&quot;,
+    &quot;lm&quot;,
+    &quot;jddfkfbbbhia&quot;,
+    &quot;cddmfeckheeo&quot;,
+    &quot;bfnmaalmjdb&quot;,
+    &quot;fbcg&quot;,
+    &quot;ko&quot;,
+    &quot;mojfj&quot;,
+    &quot;kk&quot;,
+    &quot;bbljjnnikdhg&quot;,
+    &quot;l&quot;,
+    &quot;calbc&quot;,
+    &quot;mkekn&quot;,
+    &quot;ejlhdk&quot;,
+    &quot;hkebdiebecf&quot;,
+    &quot;emhelbbda&quot;,
+    &quot;mlba&quot;,
+    &quot;ckjmih&quot;,
+    &quot;odfacclfl&quot;,
+    &quot;lgfjjbgookmnoe&quot;,
+    &quot;begnkogf&quot;,
+    &quot;gakojeblk&quot;,
+    &quot;bfflcmdko&quot;,
+    &quot;cfdclljcg&quot;,
+    &quot;ho&quot;,
+    &quot;fo&quot;,
+    &quot;acmi&quot;,
+    &quot;oemknmffgcio&quot;,
+    &quot;mlkhk&quot;,
+    &quot;kfhkndmdojhidg&quot;,
+    &quot;ckfcibmnikn&quot;,
+    &quot;dgoecamdliaeeoa&quot;,
+    &quot;ocealkbbec&quot;,
+    &quot;kbmmihb&quot;,
+    &quot;ncikad&quot;,
+    &quot;hi&quot;,
+    &quot;nccjbnldneijc&quot;,
+    &quot;hgiccigeehmdl&quot;,
+    &quot;dlfmjhmioa&quot;,
+    &quot;kmff&quot;,
+    &quot;gfhkd&quot;,
+    &quot;okiamg&quot;,
+    &quot;ekdbamm&quot;,
+    &quot;fc&quot;,
+    &quot;neg&quot;,
+    &quot;cfmo&quot;,
+    &quot;ccgahikbbl&quot;,
+    &quot;khhoc&quot;,
+    &quot;elbg&quot;,
+    &quot;cbghbacjbfm&quot;,
+    &quot;jkagbmfgemjfg&quot;,
+    &quot;ijceidhhajmja&quot;,
+    &quot;imibemhdg&quot;,
+    &quot;ja&quot;,
+    &quot;idkfd&quot;,
+    &quot;ndogdkjjkf&quot;,
+    &quot;fhic&quot;,
+    &quot;ooajkki&quot;,
+    &quot;fdnjhh&quot;,
+    &quot;ba&quot;,
+    &quot;jdlnidngkfffbmi&quot;,
+    &quot;jddjfnnjoidcnm&quot;,
+    &quot;kghljjikbacd&quot;,
+    &quot;idllbbn&quot;,
+    &quot;d&quot;,
+    &quot;mgkajbnjedeiee&quot;,
+    &quot;fbllleanknmoomb&quot;,
+    &quot;lom&quot;,
+    &quot;kofjmmjm&quot;,
+    &quot;mcdlbglonin&quot;,
+    &quot;gcnboanh&quot;,
+    &quot;fggii&quot;,
+    &quot;fdkbmic&quot;,
+    &quot;bbiln&quot;,
+    &quot;cdjcjhonjgiagkb&quot;,
+    &quot;kooenbeoongcle&quot;,
+    &quot;cecnlfbaanckdkj&quot;,
+    &quot;fejlmog&quot;,
+    &quot;fanekdneoaammb&quot;,
+    &quot;maojbcegdamn&quot;,
+    &quot;bcmanmjdeabdo&quot;,
+    &quot;amloj&quot;,
+    &quot;adgoej&quot;,
+    &quot;jh&quot;,
+    &quot;fhf&quot;,
+    &quot;cogdljlgek&quot;,
+    &quot;o&quot;,
+    &quot;joeiajlioggj&quot;,
+    &quot;oncal&quot;,
+    &quot;lbgg&quot;,
+    &quot;elainnbffk&quot;,
+    &quot;hbdi&quot;,
+    &quot;femcanllndoh&quot;,
+    &quot;ke&quot;,
+    &quot;hmib&quot;,
+    &quot;nagfahhljh&quot;,
+    &quot;ibifdlfeechcbal&quot;,
+    &quot;knec&quot;,
+    &quot;oegfcghlgalcnno&quot;,
+    &quot;abiefmjldmln&quot;,
+    &quot;mlfglgni&quot;,
+    &quot;jkofhjeb&quot;,
+    &quot;ifjbneblfldjel&quot;,
+    &quot;nahhcimkjhjgb&quot;,
+    &quot;cdgkbn&quot;,
+    &quot;nnklfbeecgedie&quot;,
+    &quot;gmllmjbodhgllc&quot;,
+    &quot;hogollongjo&quot;,
+    &quot;fmoinacebll&quot;,
+    &quot;fkngbganmh&quot;,
+    &quot;jgdblmhlmfij&quot;,
+    &quot;fkkdjknahamcfb&quot;,
+    &quot;aieakdokibj&quot;,
+    &quot;hddlcdiailhd&quot;,
+    &quot;iajhmg&quot;,
+    &quot;jenocgo&quot;,
+    &quot;embdib&quot;,
+    &quot;dghbmljjogka&quot;,
+    &quot;bahcggjgmlf&quot;,
+    &quot;fb&quot;,
+    &quot;jldkcfom&quot;,
+    &quot;mfi&quot;,
+    &quot;kdkke&quot;,
+    &quot;odhbl&quot;,
+    &quot;jin&quot;,
+    &quot;kcjmkggcmnami&quot;,
+    &quot;kofig&quot;,
+    &quot;bid&quot;,
+    &quot;ohnohi&quot;,
+    &quot;fcbojdgoaoa&quot;,
+    &quot;dj&quot;,
+    &quot;ifkbmbod&quot;,
+    &quot;dhdedohlghk&quot;,
+    &quot;nmkeakohicfdjf&quot;,
+    &quot;ahbifnnoaldgbj&quot;,
+    &quot;egldeibiinoac&quot;,
+    &quot;iehfhjjjmil&quot;,
+    &quot;bmeimi&quot;,
+    &quot;ombngooicknel&quot;,
+    &quot;lfdkngobmik&quot;,
+    &quot;ifjcjkfnmgjcnmi&quot;,
+    &quot;fmf&quot;,
+    &quot;aoeaa&quot;,
+    &quot;an&quot;,
+    &quot;ffgddcjblehhggo&quot;,
+    &quot;hijfdcchdilcl&quot;,
+    &quot;hacbaamkhblnkk&quot;,
+    &quot;najefebghcbkjfl&quot;,
+    &quot;hcnnlogjfmmjcma&quot;,
+    &quot;njgcogemlnohl&quot;,
+    &quot;ihejh&quot;,
+    &quot;ej&quot;,
+    &quot;ofn&quot;,
+    &quot;ggcklj&quot;,
+    &quot;omah&quot;,
+    &quot;hg&quot;,
+    &quot;obk&quot;,
+    &quot;giig&quot;,
+    &quot;cklna&quot;,
+    &quot;lihaiollfnem&quot;,
+    &quot;ionlnlhjckf&quot;,
+    &quot;cfdlijnmgjoebl&quot;,
+    &quot;dloehimen&quot;,
+    &quot;acggkacahfhkdne&quot;,
+    &quot;iecd&quot;,
+    &quot;gn&quot;,
+    &quot;odgbnalk&quot;,
+    &quot;ahfhcd&quot;,
+    &quot;dghlag&quot;,
+    &quot;bchfe&quot;,
+    &quot;dldblmnbifnmlo&quot;,
+    &quot;cffhbijal&quot;,
+    &quot;dbddifnojfibha&quot;,
+    &quot;mhh&quot;,
+    &quot;cjjol&quot;,
+    &quot;fed&quot;,
+    &quot;bhcnf&quot;,
+    &quot;ciiibbedklnnk&quot;,
+    &quot;ikniooicmm&quot;,
+    &quot;ejf&quot;,
+    &quot;ammeennkcdgbjco&quot;,
+    &quot;jmhmd&quot;,
+    &quot;cek&quot;,
+    &quot;bjbhcmda&quot;,
+    &quot;kfjmhbf&quot;,
+    &quot;chjmmnea&quot;,
+    &quot;ifccifn&quot;,
+    &quot;naedmco&quot;,
+    &quot;iohchafbega&quot;,
+    &quot;kjejfhbco&quot;,
+    &quot;anlhhhhg&quot;,
+  ]),
+));
+
+</code></pre>
+<h2><a class="header" href="#typescript-test" id="typescript-test">TypeScript Test</a></h2>
+<pre><code class="language-typescript">import * as T from &quot;../../deps/test.ts&quot;;
+import * as C from &quot;../../deps/coll.ts&quot;;
+import { WordBreak } from &quot;./main.ts&quot;
+
+const t1 = () =&gt; {
+  T.AssertT(WordBreak(&quot;leetcode&quot;, C.SetOf(&quot;leet&quot;, &quot;code&quot;)));
+  T.AssertT(WordBreak(&quot;applepenapple&quot;, C.SetOf(&quot;apple&quot;, &quot;pen&quot;)));
+  T.AssertF(WordBreak(&quot;catsandog&quot;, C.SetOf(&quot;cats&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;)));
+  T.AssertT(WordBreak(&quot;a&quot;, C.SetOf(&quot;a&quot;)));
+};
+
+Deno.test(&quot;0139 solution 0&quot;, t1);
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../leetcode/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../leetcode/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
